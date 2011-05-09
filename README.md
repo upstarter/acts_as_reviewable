@@ -322,6 +322,7 @@ Example: *app/views/reviews/_rating.html.haml*
       - current_rating = resource.average_rating.round
       - resource.reviewable_scale.each do |rating|
         {:class => "rate rated_#{rating}#{' current' if current_rating == rating}"}
+
 </pre>
 
 ## JavaScript/AJAX
