@@ -1,3 +1,5 @@
 = ActsAsReviewable
 
+Reviews for any AR model with multi-dimensional ratings with review commentary
+
 This project rocks and uses MIT-LICENSE.

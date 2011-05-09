@@ -48,6 +48,9 @@ GEM
       abstract (>= 1.0.0)
     ffi (1.0.7)
       rake (>= 0.8.7)
+    genspec (0.2.0.prerails3.2)
+      rspec (>= 2.0.0.beta.14)
+      sc-core-ext (>= 1.2.1)
     i18n (0.5.0)
     json_pure (1.5.1)
     mail (2.2.19)
@@ -91,6 +94,8 @@ GEM
       railties (>= 3.0)
       rspec (= 2.6.0.rc6)
     rubyzip (0.9.4)
+    sc-core-ext (1.2.1)
+      activesupport (>= 2.3.5)
     selenium-webdriver (0.2.0)
       childprocess (>= 0.1.7)
       ffi (>= 1.0.7)
@@ -109,6 +114,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (>= 0.4.0)
+  genspec
   rails (= 3.0.5)
   rspec-rails (>= 2.0.0.beta)
   sqlite3
