@@ -132,8 +132,7 @@ The *acts_as_reviewable* mixin takes some hash arguments for customization:
 *Basic*
 
 * *:by* - the reviewer model(s), e.g. User, Account, etc. (accepts either symbol or class, i.e. *User* <=> *:user* <=> *:users*, or an array of such if there are more than one reviewer model). The reviewer model will be setup for you. Note: Polymorhic, so it accepts any model. Default: *nil*.
-* *:scale*/*:range*/*:values* - range, or array, of valid rating values. Default: *1..5*. Note: Negative values are allowed too, and a range of values are not required, i.e. [-1, 1] is valid as well as [1,3,5]. =)
-* *:accept_ip* - accept anonymous users uniquely identified by IP (well...you handle the bots =D). See examples below how to use this as your visitor object. Default: *false*.
+* *:scale* / *:range* / *:values* - range, or array, of valid rating values. Default: *1..5*. Note: Negative values are allowed too, and a range of values are not required, i.e. [-1, 1] is valid as well as [1,3,5]. =)
 
 *Advanced*
 
