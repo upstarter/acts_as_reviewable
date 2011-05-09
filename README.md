@@ -324,9 +324,6 @@ Example: *app/views/reviews/_rating.html.haml*
 
 ## JavaScript/AJAX
 
-<pre>
-...
-</pre>
 
 Done! =)
 
