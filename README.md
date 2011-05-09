@@ -240,6 +240,7 @@ class AddActsAsReviewableToPostsMigration < ActiveRecord::Migration
     remove_column :posts, :cached_average_rating
   end
 end
+
 </pre>
 
 # Example
