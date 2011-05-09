@@ -1,6 +1,6 @@
 require 'rails/generators/migration'
 
-class ActsAsReviewableGenerator < Rails::Generators::Base
+class ActsAsReviewableMigrationGenerator < Rails::Generators::Base
   include Rails::Generators::Migration
   desc "run this generator to create reviews"
 

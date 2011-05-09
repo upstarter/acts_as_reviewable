@@ -1,6 +1,6 @@
 Description:
-    Copies comment.rb to app/models/.
-    Copies create_comment.rb to db/migrate
+    Copies review.rb to app/models/.
+    Copies create_review.rb to db/migrate
 
 Examples:
-    `rails generate comment`
+    `rails generate acts_as_reviewable`

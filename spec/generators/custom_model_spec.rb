@@ -1,7 +1,7 @@
   # in spec/generators/custom_model_spec.rb
   require 'spec_helper'
 
-  describe :acts_as_reviewable do
+  describe :acts_as_reviewable_migration do
     context "with no arguments or options" do
       it "should generate a help message" do
         subject.should output("A Help Message")

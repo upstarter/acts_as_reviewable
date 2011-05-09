@@ -52,12 +52,20 @@ module RapidFire
               #{method_name} << review
               end
               }
+
+            include RapidFire::Acts::Reviewable::InstanceMethods
           end
-        end
-      end
-    end
+        end # def acts_as_reviewable
+      end # module ClassMethods
+
+      module InstanceMethods
+
+        
+      end # module InstanceMethods
+      
+    end # module Reviewable
   end
 end
 
-ActiveRecord::Base.send(:include, RapidFire::Acts::Reviewable)
+ActiveRecord::Base.class_eval { include RapidFire::Acts::Reviewable }
 
