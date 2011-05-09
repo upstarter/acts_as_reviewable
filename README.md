@@ -10,10 +10,10 @@ _Rails: Make an ActiveRecord resource ratable/reviewable  (rating + comment) acr
 
 Existing plugins rate on one dimension and provide basic analytics and no charting.
 
-* Don't do assumptions that your rater/reviewer model is **User**. Relying on polymorphic assocation completely, so your reviewer can be...**anymodel**.
+* Don't do assumptions that your rater/reviewer model is *User*. Relying on polymorphic assocation completely, so your reviewer can be...*anymodel*.
 * Make any model act as a Review model.
 * Don't make assumptions about what rating scale you wanna have, how the rating scale should be divided, or average rating rounding precision. The 1-5 scale is 80% of the cases, but there's no real reason or overhead to support any scale. To sum it up: Scale can consist negative and/or positive range or explicit integer/float values...and you won't even notice the difference on the outside. See the examples! =)
-* Possible to submit additional custom attributes while rating, such as **title** and **body** to make up a "review" instead of just a "rating". Feel free.
+* Possible to submit additional custom attributes while rating, such as *title* and *body* to make up a "review" instead of just a "rating". Feel free.
 * Finders implemented using scopes, i.e.. less code smell.
 * Information graphics provided as an optional extension to the plugin.
 * Transparently supports column-caching expensive calculations for the reviewable model. Will simply be turned on if these fields exists - otherwise fallback with an optimized DB hit instead.
@@ -34,7 +34,7 @@ for rails 3, in your Gemfile:
 
 <pre>$ rails generate acts_as_reviewable_migration</pre>
 
-Generates **db/migrations/{timestamp}_acts_as_reviewable_migration** with:
+Generates *db/migrations/{timestamp}_acts_as_reviewable_migration* with:
 
 <pre>
 class ActsAsReviewableMigration < ActiveRecord::Migration
@@ -127,26 +127,26 @@ Review.destroy_all # just in case...
 
 # Mixin Arguments
 
-The **acts_as_reviewable** mixin takes some hash arguments for customization:
+The *acts_as_reviewable* mixin takes some hash arguments for customization:
 
 *Basic*
 
-* **:by** - the reviewer model(s), e.g. User, Account, etc. (accepts either symbol or class, i.e. **User** <=> **:user** <=> **:users**, or an array of such if there are more than one reviewer model). The reviewer model will be setup for you. Note: Polymorhic, so it accepts any model. Default: **nil**.
-* **:scale**/**:range**/**:values** - range, or array, of valid rating values. Default: **1..5**. Note: Negative values are allowed too, and a range of values are not required, i.e. [-1, 1] is valid as well as [1,3,5]. =)
-* **:accept_ip** - accept anonymous users uniquely identified by IP (well...you handle the bots =D). See examples below how to use this as your visitor object. Default: **false**.
+* *:by* - the reviewer model(s), e.g. User, Account, etc. (accepts either symbol or class, i.e. *User* <=> *:user* <=> *:users*, or an array of such if there are more than one reviewer model). The reviewer model will be setup for you. Note: Polymorhic, so it accepts any model. Default: *nil*.
+* *:scale*/*:range*/*:values* - range, or array, of valid rating values. Default: *1..5*. Note: Negative values are allowed too, and a range of values are not required, i.e. [-1, 1] is valid as well as [1,3,5]. =)
+* *:accept_ip* - accept anonymous users uniquely identified by IP (well...you handle the bots =D). See examples below how to use this as your visitor object. Default: *false*.
 
 *Advanced*
 
-* **:total_precision** - maximum number of digits for the average rating value. Default: **1**.
-* **:step** - useful if you want to specify a custom step for each scale value within a range of values. Default: **1** for range of fixnum, auto-detected based on first value in range of float.
-* **:steps** - similar to **:step** (they relate to each other), but instead of specifying a step you can specify how many steps you want. Default: auto-detected based on custom or default value **:step**.
+* *:total_precision* - maximum number of digits for the average rating value. Default: *1*.
+* *:step* - useful if you want to specify a custom step for each scale value within a range of values. Default: *1* for range of fixnum, auto-detected based on first value in range of float.
+* *:steps* - similar to *:step* (they relate to each other), but instead of specifying a step you can specify how many steps you want. Default: auto-detected based on custom or default value *:step*.
 
 # Aliases
 
 To make the usage of IsReviewable a bit more generic (similar to other plugins you may use), there are two useful aliases for this purpose:
 
-* **Review#owner**    <=>   **Review#reviewer**
-* **Review#object**   <=>   **Review#reviewable**
+* *Review#owner*    <=>   *Review#reviewer*
+* *Review#object*   <=>   *Review#reviewable*
 
 Example:
 
@@ -159,37 +159,37 @@ Example:
 
 ActsAsReviewable has plenty of useful finders implemented using scopes. Here they are:
 
-## **Review**
+## *Review*
 
 *Order:*
 
-* **in_order** - most recent reviews last (order by creation date).
-* **most_recent** - most recent reviews first (opposite of **in_order** above).
-* **lowest_rating** - reviews with lowest ratings first.
-* **highest_rating** - reviews with highest ratings first.
+* *in_order* - most recent reviews last (order by creation date).
+* *most_recent* - most recent reviews first (opposite of *in_order* above).
+* *lowest_rating* - reviews with lowest ratings first.
+* *highest_rating* - reviews with highest ratings first.
 
 *Filter:*
 
-* **limit(<number_of_items>)** - maximum **<number_of_items>** reviews.
-* **since(<created_at_datetime>)** - reviews created since **<created_at_datetime>**.
-* **recent(<datetime_or_size>)** - if DateTime: reviews created since **<datetime_or_size>**, else if Fixnum: pick last **<datetime_or_size>** number of reviews.
-* **between_dates(<from_date>, to_date)** - reviews created between two datetimes.
-* **with_rating(<rating_value_or_range>)** - reviews with(in) rating value (or range) **<rating_value_or_range>**.
-* **with_a_rating** - reviews with a rating value, i.e. not nil.
-* **without_a_rating** - opposite of **with_a_rating** (above).
-* **with_a_body** - reviews with a body/comment, i.e. not nil/blank.
-* **without_a_body** - opposite of **with_a_body** (above).
-* **complete** - reviews with both rating and comments, i.e. "full reviews" where.
-* **of_reviewable_type(<reviewable_type>)** - reviews of **<reviewable_type>** type of reviewable models.
-* **by_reviewer_type(<reviewer_type>)** - reviews of **<reviewer_type>** type of reviewer models.
-* **on(<reviewable_object>)** - reviews on the reviewable object **<reviewable_object>** .
-* **by(<reviewer_object>)** - reviews by the **<reviewer_object>** type of reviewer models.
+* *limit(<number_of_items>)* - maximum *<number_of_items>* reviews.
+* *since(<created_at_datetime>)* - reviews created since *<created_at_datetime>*.
+* *recent(<datetime_or_size>)* - if DateTime: reviews created since *<datetime_or_size>*, else if Fixnum: pick last *<datetime_or_size>* number of reviews.
+* *between_dates(<from_date>, to_date)* - reviews created between two datetimes.
+* *with_rating(<rating_value_or_range>)* - reviews with(in) rating value (or range) *<rating_value_or_range>*.
+* *with_a_rating* - reviews with a rating value, i.e. not nil.
+* *without_a_rating* - opposite of *with_a_rating* (above).
+* *with_a_body* - reviews with a body/comment, i.e. not nil/blank.
+* *without_a_body* - opposite of *with_a_body* (above).
+* *complete* - reviews with both rating and comments, i.e. "full reviews" where.
+* *of_reviewable_type(<reviewable_type>)* - reviews of *<reviewable_type>* type of reviewable models.
+* *by_reviewer_type(<reviewer_type>)* - reviews of *<reviewer_type>* type of reviewer models.
+* *on(<reviewable_object>)* - reviews on the reviewable object *<reviewable_object>* .
+* *by(<reviewer_object>)* - reviews by the *<reviewer_object>* type of reviewer models.
 
-## **Reviewable**
+## *Reviewable*
 
 _TODO: Documentation on named scopes for Reviewable._
 
-## **Reviewer**
+## *Reviewer*
 
 _TODO: Documentation on named scopes for Reviewer._
 
@@ -224,7 +224,7 @@ Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
 # Caching
 
-If the visitable class table - in the sample above **Post** - contains a columns **cached_total_reviews** and **cached_average_rating**, then a cached value will be maintained within it for the number of reviews and the average rating the object have got.
+If the visitable class table - in the sample above *Post* - contains a columns *cached_total_reviews* and *cached_average_rating*, then a cached value will be maintained within it for the number of reviews and the average rating the object have got.
 
 Additional caching fields (to a reviewable model table):
 
@@ -249,7 +249,7 @@ end
 
 Depending on your implementation: You might - or might not - need a Controller, but for most cases where you only want to allow rating of something, a controller most probably is overkill. In the case of a review, this is how one cold look like (in this example, I'm using the excellent the "InheritedResources":http://github.com/josevalim/inherited_resources):
 
-Example: **app/controllers/reviews_controller.rb**:
+Example: *app/controllers/reviews_controller.rb*:
 
 <pre>
 class ReviewsController < InheritedResources::Base
@@ -261,7 +261,7 @@ class ReviewsController < InheritedResources::Base
 end
 </pre>
 
-..or in the more basic rating case - **app/controllers/posts_controller.rb**:
+..or in the more basic rating case - *app/controllers/posts_controller.rb*:
 
 <pre>
 class PostsController < InheritedResources::Base
@@ -287,7 +287,7 @@ end
 
 ## Routes
 
-**config/routes.rb**
+*config/routes.rb*
 
 <pre>
 resources :posts, :member => {:rate => :put}
@@ -297,7 +297,7 @@ resources :posts, :member => {:rate => :put}
 
 ActsAsReviewable comes with no view templates (etc.) because of already stated reasons, but basic rating mechanism is trivial to implement (in this example, I'm using HAML because I despise ERB):
 
-Example: **app/views/posts/show.html.haml**
+Example: *app/views/posts/show.html.haml*
 
 <pre>
 %h1
@@ -309,7 +309,7 @@ Example: **app/views/posts/show.html.haml**
   #rating_wrapper= render '/reviews/rating', :resource => @post
 </pre>
 
-Example: **app/views/reviews/_rating.html.haml**
+Example: *app/views/reviews/_rating.html.haml*
 
 <pre>
 .rating
@@ -347,7 +347,7 @@ class Post < ActiveRecord::Base
 end
 </pre>
 
-*Note:* **:values** is an alias for **:scale** for semantical reasons in cases like these.
+*Note:* *:values* is an alias for *:scale* for semantical reasons in cases like these.
 
 # Dependencies
 
@@ -364,8 +364,8 @@ For testing: "rspec" and "sqlite3-ruby":http://gemcutter.org/gems/sqlite3-ruby.
 
 * bug: Accept , etc..
 * documentation: A few more README-examples.
-* feature: Useful finders for **Reviewable**.
-* feature: Useful finders for **Reviewer**.
+* feature: Useful finders for *Reviewable*.
+* feature: Useful finders for *Reviewer*.
 * testing: More thorough tests, especially for named scopes which is a bit tricky.
 
 ## Maybe:
