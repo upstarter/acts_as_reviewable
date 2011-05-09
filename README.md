@@ -222,26 +222,31 @@ Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
 # Caching
 
-If the visitable class table, in the sample above *Post*, contains a columns *cached_total_reviews* and *cached_average_rating*, then a cached value will be maintained within it for the number of reviews and the average rating the object have got.
+If the visitable class table - in the sample above *Post* - contains a columns *cached_total_reviews* and *cached_average_rating*, then a cached value will be maintained within it for the number of reviews and the average rating the object have got.
 
 Additional caching fields (to a reviewable model table):
 
-<pre>
-class AddActsAsReviewableToPostsMigration < ActiveRecord::Migration
-  def self.up
-    add_column :posts, :cached_total_reviews, :integer
-    add_column :posts, :cached_average_rating, :integer
-  end
 
-  def self.down
-    remove_column :posts, :cached_total_reviews
-    remove_column :posts, :cached_average_rating
-  end
+
+## Controller
+
+Depending on your implementation: You might - or might not - need a Controller, but for most cases where you only want to allow rating of something, a controller most probably is overkill. In the case of a review, this is how one cold look like (in this example, I'm using the excellent the "InheritedResources":http://github.com/josevalim/inherited_resources):
+
+Example: *app/controllers/reviews_controller.rb*:
+
+<pre>
+class ReviewsController < InheritedResources::Base
+
+  actions :create, :update, :destroy
+  respond_to :js
+  layout false
+
 end
+
 </pre>
 
 
-...or in the more basic rating case - *app/controllers/posts_controller.rb*:
+..or in the more basic rating case - *app/controllers/posts_controller.rb*:
 
 <pre>
 class PostsController < InheritedResources::Base
