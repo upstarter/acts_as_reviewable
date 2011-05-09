@@ -1,4 +1,4 @@
-= ActsAsReviewable
+# ActsAsReviewable
 
 Reviews for any AR model with multi-dimensional ratings, review commentary, and info-graphics.
 
@@ -28,9 +28,9 @@ for rails 3, in your Gemfile:
 
 <pre>gem 'acts_as_reviewable'</pre>
 
-h2. Usage
+# Usage
 
-h3. 1. Generate migration:
+## 1. Generate migration:
 
 <pre>$ rails generate acts_as_reviewable_migration</pre>
 
@@ -70,7 +70,7 @@ class ActsAsReviewableMigration < ActiveRecord::Migration
 end
 </pre>
 
-h3. 2. Make your model reviewable:
+## 2. Make your model reviewable:
 
 <pre>
 class Post < ActiveRecord::Base
@@ -87,7 +87,7 @@ class Book < ActiveRecord::Base
 end
 </pre>
 
-h3. 3. ...and here we go:
+## 3. ...and here we go:
 
 Examples:
 
@@ -125,7 +125,7 @@ Review.destroy_all # just in case...
 # etc...
 </pre>
 
-h2. Mixin Arguments
+# Mixin Arguments
 
 The @acts_as_reviewable@ mixin takes some hash arguments for customization:
 
@@ -141,7 +141,7 @@ The @acts_as_reviewable@ mixin takes some hash arguments for customization:
 * @:step@ - useful if you want to specify a custom step for each scale value within a range of values. Default: @1@ for range of fixnum, auto-detected based on first value in range of float.
 * @:steps@ - similar to @:step@ (they relate to each other), but instead of specifying a step you can specify how many steps you want. Default: auto-detected based on custom or default value @:step@.
 
-h2. Aliases
+# Aliases
 
 To make the usage of IsReviewable a bit more generic (similar to other plugins you may use), there are two useful aliases for this purpose:
 
@@ -155,11 +155,11 @@ Example:
 @post.reviews.first.object == post.reviews.first.reviewable   # => true
 </pre>
 
-h2. Finders (Named Scopes)
+# Finders (Named Scopes)
 
 ActsAsReviewable has plenty of useful finders implemented using scopes. Here they are:
 
-h3. @Review@
+## @Review@
 
 *Order:*
 
@@ -185,15 +185,15 @@ h3. @Review@
 * @on(<reviewable_object>)@ - reviews on the reviewable object @<reviewable_object>@ .
 * @by(<reviewer_object>)@ - reviews by the @<reviewer_object>@ type of reviewer models.
 
-h3. @Reviewable@
+## @Reviewable@
 
 _TODO: Documentation on named scopes for Reviewable._
 
-h3. @Reviewer@
+## @Reviewer@
 
 _TODO: Documentation on named scopes for Reviewer._
 
-h3. Examples using finders:
+## Examples using finders:
 
 <pre>
 @user = User.first
@@ -218,11 +218,11 @@ Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
 </pre>
 
-h2. Additional Methods
+# Additional Methods
 
 *Note:* See documentation (RDoc).
 
-h2. Caching
+# Caching
 
 If the visitable class table - in the sample above @Post@ - contains a columns @cached_total_reviews@ and @cached_average_rating@, then a cached value will be maintained within it for the number of reviews and the average rating the object have got.
 
@@ -243,9 +243,9 @@ class AddActsAsReviewableToPostsMigration < ActiveRecord::Migration
 end
 </pre>
 
-h2. Example
+# Example
 
-h3. Controller
+## Controller
 
 Depending on your implementation: You might - or might not - need a Controller, but for most cases where you only want to allow rating of something, a controller most probably is overkill. In the case of a review, this is how one cold look like (in this example, I'm using the excellent the "InheritedResources":http://github.com/josevalim/inherited_resources):
 
@@ -285,7 +285,7 @@ class PostsController < InheritedResources::Base
 end
 </pre>
 
-h3. Routes
+## Routes
 
 @config/routes.rb@
 
@@ -293,7 +293,7 @@ h3. Routes
 resources :posts, :member => {:rate => :put}
 </pre>
 
-h3. Views
+## Views
 
 ActsAsReviewable comes with no view templates (etc.) because of already stated reasons, but basic rating mechanism is trivial to implement (in this example, I'm using HAML because I despise ERB):
 
@@ -325,7 +325,7 @@ Example: @app/views/reviews/_rating.html.haml@
         {:class => "rate rated_#{rating}#{' current' if current_rating == rating}"}
 </pre>
 
-h3. JavaScript/AJAX
+## JavaScript/AJAX
 
 <pre>
 ...
@@ -333,9 +333,9 @@ h3. JavaScript/AJAX
 
 Done! =)
 
-h2. Additional Use Cases
+# Additional Use Cases
 
-h3. Like/Dislike
+## Like/Dislike
 
 ActsAsReviewable is designed in such way that you as a developer are not locked to how traditional rating works. As an example, this is how you could implement like/dislike (like VoteFu) pattern using ActsAsReviewable:
 
@@ -349,18 +349,18 @@ end
 
 *Note:* @:values@ is an alias for @:scale@ for semantical reasons in cases like these.
 
-h2. Dependencies
+# Dependencies
 
 For testing: "rspec" and "sqlite3-ruby":http://gemcutter.org/gems/sqlite3-ruby.
 
-h2. Notes
+# Notes
 
 * Tested with Ruby 1.9.2 and Rails 3.0.5.
 * Let me know if you find any bugs; not used in production yet so consider this a concept version.
 
-h2. TODO
+# TODO
 
-h3. Priority:
+## Priority:
 
 * bug: Accept , etc..
 * documentation: A few more README-examples.
@@ -368,15 +368,15 @@ h3. Priority:
 * feature: Useful finders for @Reviewer@.
 * testing: More thorough tests, especially for named scopes which is a bit tricky.
 
-h3. Maybe:
+## Maybe:
 
-h2. Related Links
+# Related Links
 
 ...that might be of interest.
 
 * "jQuery Star Rating":http://github.com/rathgar/jquery-star-rating/ - javascript star rating plugin for Rails on jQuery, if you don't want to do the rating widget on your own. It should be quite straightforward to customize the appearance of it for your needs too.
 
-h2. License
+# License
 
 Released under the MIT license.
 Copyright (c) "Eric Steen":http://github.com/rubycoder1
