@@ -2,11 +2,11 @@
 
 Reviews for any AR model with multi-dimensional ratings, review commentary, and info-graphics.
 
-h1. ActsAsReviewable ~ concept version ~
+## ActsAsReviewable ~ concept version ~
 
 _Rails: Make an ActiveRecord resource ratable/reviewable  (rating + comment) across multiple dimensions with infographics._
 
-h2. Why another rating/review-plugin?
+## Why another rating/review-plugin?
 
 Existing plugins rate on one dimension and provide basic analytics and no charting.
 
