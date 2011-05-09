@@ -243,8 +243,6 @@ end
 
 </pre>
 
-# Example
-
 ## Controller
 
 Depending on your implementation: You might - or might not - need a Controller, but for most cases where you only want to allow rating of something, a controller most probably is overkill. In the case of a review, this is how one cold look like (in this example, I'm using the excellent the "InheritedResources":http://github.com/josevalim/inherited_resources):
