@@ -142,7 +142,7 @@ The *acts_as_reviewable* mixin takes some hash arguments for customization:
 
 # Aliases
 
-To make the usage of IsReviewable a bit more generic (similar to other plugins you may use), there are two useful aliases for this purpose:
+To make the usage of ActsAsReviewable a bit more generic (similar to other plugins you may use), there are two useful aliases for this purpose:
 
 * *Review#owner*    <=>   *Review#reviewer*
 * *Review#object*   <=>   *Review#reviewable*
@@ -186,11 +186,11 @@ ActsAsReviewable has plenty of useful finders implemented using scopes. Here the
 
 ## *Reviewable*
 
-_TODO: Documentation on named scopes for Reviewable._
+_TODO: Documentation on scopes for Reviewable._
 
 ## *Reviewer*
 
-_TODO: Documentation on named scopes for Reviewer._
+_TODO: Documentation on scopes for Reviewer._
 
 ## Examples using finders:
 
@@ -219,7 +219,7 @@ Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
 # Additional Methods
 
-*Note:* See documentation (RDoc).
+*Note:* See documentation.
 
 # Caching
 
@@ -227,7 +227,7 @@ If the visitable class table - in the sample above *Post* - contains a columns *
 
 Additional caching fields (to a reviewable model table):
 
-<pre>
+
 class AddActsAsReviewableToPostsMigration < ActiveRecord::Migration
   def self.up
     # Enable acts_as_reviewable-caching.
@@ -240,7 +240,7 @@ class AddActsAsReviewableToPostsMigration < ActiveRecord::Migration
     remove_column :posts, :cached_average_rating
   end
 end
-</pre>
+
 
 # Example
 
