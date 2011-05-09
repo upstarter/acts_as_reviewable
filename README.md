@@ -250,7 +250,7 @@ Depending on your implementation: You might - or might not - need a Controller, 
 
 Example: *app/controllers/reviews_controller.rb*:
 
-<pre>
+
 class ReviewsController < InheritedResources::Base
 
   actions :create, :update, :destroy
@@ -258,11 +258,10 @@ class ReviewsController < InheritedResources::Base
   layout false
 
 end
-</pre>
+
 
 ..or in the more basic rating case - *app/controllers/posts_controller.rb*:
 
-<pre>
 class PostsController < InheritedResources::Base
 
   actions :all
@@ -282,7 +281,7 @@ class PostsController < InheritedResources::Base
   end
 
 end
-</pre>
+
 
 ## Routes
 
