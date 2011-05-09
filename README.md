@@ -226,21 +226,6 @@ If the visitable class table, in the sample above *Post*, contains a columns *ca
 
 Additional caching fields (to a reviewable model table):
 
-<pre>
-class AddActsAsReviewableToPostsMigration < ActiveRecord::Migration
-  def self.up
-    # Enable acts_as_reviewable-caching.
-    add_column :posts, :cached_total_reviews, :integer
-    add_column :posts, :cached_average_rating, :integer
-  end
-
-  def self.down
-    remove_column :posts, :cached_total_reviews
-    remove_column :posts, :cached_average_rating
-  end
-end
-
-</pre>
 
 
 ..or in the more basic rating case - *app/controllers/posts_controller.rb*:
