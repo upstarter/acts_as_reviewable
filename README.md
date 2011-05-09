@@ -221,25 +221,6 @@ Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
 
 
-
-## Controller
-
-Depending on your implementation: You might - or might not - need a Controller, but for most cases where you only want to allow rating of something, a controller most probably is overkill. In the case of a review, this is how one cold look like (in this example, I'm using the excellent the "InheritedResources":http://github.com/josevalim/inherited_resources):
-
-Example: *app/controllers/reviews_controller.rb*:
-
-<pre>
-class ReviewsController < InheritedResources::Base
-
-  actions :create, :update, :destroy
-  respond_to :js
-  layout false
-
-end
-
-</pre>
-
-
 ..or in the more basic rating case - *app/controllers/posts_controller.rb*:
 
 <pre>
