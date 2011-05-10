@@ -22,21 +22,21 @@ Existing plugins rate on one dimension and provide basic analytics and no charti
 
 *Gem:*
 
-<pre>gem install acts_as_reviewable</pre>
+`gem install acts_as_reviewable`
 
 for rails 3, in your Gemfile:
 
-<pre>gem 'acts_as_reviewable'</pre>
+`gem 'acts_as_reviewable'`
 
 # Usage
 
 ## 1. Generate migration:
 
-<pre>$ rails generate acts_as_reviewable_migration</pre>
+`$ rails generate acts_as_reviewable_migration`
 
 Generates *db/migrations/{timestamp}_acts_as_reviewable_migration* with:
 
-<pre>
+`
 class ActsAsReviewableMigration < ActiveRecord::Migration
   def self.up
     create_table :reviews do |t|
@@ -68,7 +68,7 @@ class ActsAsReviewableMigration < ActiveRecord::Migration
     drop_table :reviews
   end
 end
-</pre>
+`
 
 ## 2. Make your model reviewable:
 
@@ -80,18 +80,18 @@ end
 
 or, with explicit reviewer (or reviewers):
 
-<pre>
+`
 class Book < ActiveRecord::Base
   # Setup associations for the reviewer class(es) automatically, and specify an explicit scale instead.
   acts_as_reviewable :by => [:users, :authers], :scale => 0..5
 end
-</pre>
+`
 
 ## 3. ...and here we go:
 
 Examples:
 
-<pre>
+`
 Review.destroy_all # just in case...
 @post = Post.first
 @user = User.first
@@ -123,7 +123,7 @@ Review.destroy_all # just in case...
 # TODO: A few more samples...
 
 # etc...
-</pre>
+`
 
 # Mixin Arguments
 
@@ -149,10 +149,10 @@ To make the usage of ActsAsReviewable a bit more generic (similar to other plugi
 
 Example:
 
-<pre>
+`
 @post.reviews.first.owner == post.reviews.first.reviewer      # => true
 @post.reviews.first.object == post.reviews.first.reviewable   # => true
-</pre>
+`
 
 # Finders (Named Scopes)
 
@@ -194,7 +194,7 @@ _TODO: Documentation on scopes for Reviewer._
 
 ## Examples using finders:
 
-<pre>
+`
 @user = User.first
 @post = Post.first
 
@@ -215,7 +215,7 @@ _TODO: Documentation on scopes for Reviewer._
 Review.on(@post)  # => [all reviews on @user] <=> @post.reviews
 Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
-</pre>
+`
 
 # Additional Methods
 
@@ -223,9 +223,9 @@ Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
 *config/routes.rb*
 
-<pre>
+`
 resources :posts, :member => {:rate => :put}
-</pre>
+`
 
 ## Views
 
@@ -233,7 +233,7 @@ ActsAsReviewable comes with no view templates (etc.), but basic rating mechanism
 
 Example: *app/views/posts/show.html.haml*
 
-<pre>
+`
 %h1
   = @post.title
 %p
@@ -241,11 +241,11 @@ Example: *app/views/posts/show.html.haml*
 %p
   = "Your rating:"
   #rating_wrapper= render '/reviews/rating', :resource => @post
-</pre>
+`
 
 Example: *app/views/reviews/_rating.html.haml*
 
-<pre>
+`
 .rating
   - if resource.present? && resource.reviewable?
     - if reviewer.present?
@@ -257,7 +257,7 @@ Example: *app/views/reviews/_rating.html.haml*
       - current_rating = resource.average_rating.round
       - resource.reviewable_scale.each do |rating|
         {:class => "rate rated_#{rating}#{' current' if current_rating == rating}"}
-</pre>
+`
 
 ## JavaScript/AJAX
 
@@ -272,11 +272,11 @@ ActsAsReviewable is designed in such way that you as a developer are not locked 
 
 Example:
 
-<pre>
+`
 class Post < ActiveRecord::Base
   acts_as_reviewable :by => :users, :values => [0, 1]
 end
-</pre>
+`
 
 *Note:* *:values* is an alias for *:scale* for semantical reasons in cases like these.
 
