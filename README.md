@@ -38,7 +38,7 @@ Generates *db/migrations/{timestamp}_acts_as_reviewable_migration* with
 
 
 <pre>
-class ActsAsReviewableMigration < ActiveRecord::Migration
+class ActsAsReviewableMigration &lt; ActiveRecord::Migration
   def self.up
     create_table :reviews do |t|
       t.references  :reviewable,    :polymorphic => true
@@ -72,9 +72,8 @@ end
 </pre>
 
 ## 2. Make your model reviewable:
-
 <pre>
-class Post < ActiveRecord::Base
+class Post &lt; ActiveRecord::Base
    acts_as_reviewable :scale => 0..5
 end
 </pre>
@@ -82,7 +81,7 @@ end
 or, with explicit reviewer (or reviewers):
 
 `
-class Book < ActiveRecord::Base
+class Book &lt; ActiveRecord::Base
   # Setup associations for the reviewer class(es) automatically, and specify an explicit scale instead.
   acts_as_reviewable :by => [:users, :authers], :scale => 0..5
 end
@@ -274,7 +273,7 @@ ActsAsReviewable is designed in such way that you as a developer are not locked 
 Example:
 
 `
-class Post < ActiveRecord::Base
+class Post &lt; ActiveRecord::Base
   acts_as_reviewable :by => :users, :values => [0, 1]
 end
 `
