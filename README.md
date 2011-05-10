@@ -2,7 +2,7 @@
 
 Reviews for any AR model with multi-dimensional ratings, review commentary, and info-graphics.
 
-## ActsAsReviewable -   concept version.
+## ActsAsReviewable -  concept version.
 
 _Rails: Make an ActiveRecord resource ratable/reviewable  (rating + comment) across multiple dimensions with infographics._
 
@@ -10,13 +10,12 @@ _Rails: Make an ActiveRecord resource ratable/reviewable  (rating + comment) acr
 
 Existing plugins rate on one dimension and provide basic analytics and no charting.
 
-* Don't do assumptions that your rater/reviewer model is *User*. Relying on polymorphic assocation completely, so your reviewer can be...*anymodel*.
+* Don't assume that your rater/reviewer model is *User*. Use polymorphic associations, so your reviewer can be...*anymodel*.
 * Make any model act as a Review model.
 * Don't make assumptions about what rating scale you wanna have, how the rating scale should be divided, or average rating rounding precision. The 1-5 scale is 80% of the cases, but there's no real reason or overhead to support any scale. To sum it up: Scale can consist negative and/or positive range or explicit integer/float values...and you won't even notice the difference on the outside. See the examples! =)
 * Possible to submit additional custom attributes while rating, such as *title* and *body* to make up a "review" instead of just a "rating". Feel free.
 * Finders implemented using scopes, i.e.. less code smell.
-* Information graphics provided as an optional extension to the plugin.
-* Transparently supports column-caching expensive calculations for the reviewable model. Will simply be turned on if these fields exists - otherwise fallback with an optimized DB hit instead.
+* Information graphics provided as an optional extension to the plugin. Engine for charting would be useful, even if just for admins.
 
 ## Installation
 
