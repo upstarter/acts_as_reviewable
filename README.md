@@ -80,12 +80,12 @@ end
 
 or, with explicit reviewer (or reviewers):
 
-`
+<pre>
 class Book &lt; ActiveRecord::Base
   # Setup associations for the reviewer class(es) automatically, and specify an explicit scale instead.
   acts_as_reviewable :by => [:users, :authers], :scale => 0..5
 end
-`
+</pre>
 
 ## 3. ...and here we go:
 
@@ -272,11 +272,11 @@ ActsAsReviewable is designed in such way that you as a developer are not locked 
 
 Example:
 
-`
+<pre>
 class Post &lt; ActiveRecord::Base
   acts_as_reviewable :by => :users, :values => [0, 1]
 end
-`
+</pre>
 
 *Note:* *:values* is an alias for *:scale* for semantical reasons in cases like these.
 
