@@ -37,7 +37,8 @@ for rails 3, in your Gemfile:
 Generates *db/migrations/{timestamp}_acts_as_reviewable_migration* with
 
 
-`class ActsAsReviewableMigration < ActiveRecord::Migration
+<pre>
+class ActsAsReviewableMigration < ActiveRecord::Migration
   def self.up
     create_table :reviews do |t|
       t.references  :reviewable,    :polymorphic => true
@@ -67,7 +68,8 @@ Generates *db/migrations/{timestamp}_acts_as_reviewable_migration* with
   def self.down
     drop_table :reviews
   end
-end`
+end
+</pre>
 
 ## 2. Make your model reviewable:
 
