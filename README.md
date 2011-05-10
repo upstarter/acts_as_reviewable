@@ -34,7 +34,7 @@ for rails 3, in your Gemfile:
 
 `$ rails generate acts_as_reviewable_migration`
 
-Generates *db/migrations/{timestamp}_acts_as_reviewable_migration* with:
+Generates *db/migrations/{timestamp}_acts_as_reviewable_migration* with
 
 
 `class ActsAsReviewableMigration < ActiveRecord::Migration
