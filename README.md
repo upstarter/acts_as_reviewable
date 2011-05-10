@@ -72,11 +72,11 @@ end
 
 ## 2. Make your model reviewable:
 
-<pre>
+`
 class Post < ActiveRecord::Base
   acts_as_reviewable :scale => 0..5
 end
-</pre>
+`
 
 or, with explicit reviewer (or reviewers):
 
@@ -229,7 +229,7 @@ resources :posts, :member => {:rate => :put}
 
 ## Views
 
-ActsAsReviewable comes with no view templates (etc.) because of already stated reasons, but basic rating mechanism is trivial to implement (in this example, I'm using HAML because I despise ERB):
+ActsAsReviewable comes with no view templates (etc.), but basic rating mechanism is trivial to implement (in this example, I'm using HAML because I despise ERB):
 
 Example: *app/views/posts/show.html.haml*
 
