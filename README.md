@@ -73,9 +73,11 @@ end
 
 ## 2. Make your model reviewable:
 
-`class Post < ActiveRecord::Base`
-  `acts_as_reviewable :scale => 0..5`
-`end`
+<pre>
+class Post < ActiveRecord::Base
+   acts_as_reviewable :scale => 0..5
+end
+</pre>
 
 or, with explicit reviewer (or reviewers):
 
