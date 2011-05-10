@@ -82,7 +82,7 @@ or, with explicit reviewer (or reviewers):
 <pre>
 class Book &lt; ActiveRecord::Base
   # Setup associations for the reviewer class(es) automatically, and specify an explicit scale instead.
-  acts_as_reviewable :by => [:users, :authers], :scale => 0..5
+  acts_as_reviewable :by => [:users, :authors], :scale => 0..5
 end
 </pre>
 
@@ -126,7 +126,7 @@ Review.destroy_all # just in case...
 
 # Mixin Arguments
 
-The *acts_as_reviewable* mixin takes some hash arguments for customization:
+The *acts_as_reviewable* mixin takes the following hash arguments for customization:
 
 *Basic*
 
