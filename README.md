@@ -91,7 +91,7 @@ end
 
 Examples:
 
-`
+<pre>
 Review.destroy_all # just in case...
 @post = Post.first
 @user = User.first
@@ -123,7 +123,7 @@ Review.destroy_all # just in case...
 # TODO: A few more samples...
 
 # etc...
-`
+</pre>
 
 # Mixin Arguments
 
@@ -149,10 +149,10 @@ To make the usage of ActsAsReviewable a bit more generic (similar to other plugi
 
 Example:
 
-`
+<pre>
 @post.reviews.first.owner == post.reviews.first.reviewer      # => true
 @post.reviews.first.object == post.reviews.first.reviewable   # => true
-`
+</pre>
 
 # Finders (Named Scopes)
 
@@ -194,7 +194,7 @@ _TODO: Documentation on scopes for Reviewer._
 
 ## Examples using finders:
 
-`
+<pre>
 @user = User.first
 @post = Post.first
 
@@ -215,7 +215,7 @@ _TODO: Documentation on scopes for Reviewer._
 Review.on(@post)  # => [all reviews on @user] <=> @post.reviews
 Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
-`
+</pre>
 
 # Additional Methods
 
@@ -223,9 +223,9 @@ Review.by(@user)  # => [all reviews by @user] <=> @user.reviews
 
 *config/routes.rb*
 
-`
+<pre>
 resources :posts, :member => {:rate => :put}
-`
+</pre>
 
 ## Views
 
@@ -233,7 +233,7 @@ ActsAsReviewable comes with no view templates (etc.), but basic rating mechanism
 
 Example: *app/views/posts/show.html.haml*
 
-`
+<pre>
 %h1
   = @post.title
 %p
@@ -241,11 +241,11 @@ Example: *app/views/posts/show.html.haml*
 %p
   = "Your rating:"
   #rating_wrapper= render '/reviews/rating', :resource => @post
-`
+</pre>
 
 Example: *app/views/reviews/_rating.html.haml*
 
-`
+<pre>
 .rating
   - if resource.present? && resource.reviewable?
     - if reviewer.present?
@@ -257,7 +257,7 @@ Example: *app/views/reviews/_rating.html.haml*
       - current_rating = resource.average_rating.round
       - resource.reviewable_scale.each do |rating|
         {:class => "rate rated_#{rating}#{' current' if current_rating == rating}"}
-`
+</pre>
 
 ## JavaScript/AJAX
 
