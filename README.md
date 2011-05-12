@@ -2,18 +2,20 @@
 
 Reviews for any AR model with multi-dimensional ratings, review commentary, and info-graphics.
 
-## ActsAsReviewable -  concept version.
+## ActsAsReviewable -  concept v0.0.1.
 
-_Rails: Make an ActiveRecord resource ratable/reviewable  (rating + comment) across multiple dimensions with infographics._
+_Rails: Make an ActiveRecord resource rateable/reviewable  (rating + comment) across multiple dimensions with infographics._
 
 ## Why another rating/review-plugin?
 
 Existing plugins rate on one dimension and provide basic analytics and no charting.
 
 * Don't assume that your rater/reviewer model is *User*. Use polymorphic associations, so your reviewer can be...*anymodel*.
-* Make any model act as a Review model.
-* Don't make assumptions about what rating scale you wanna have, how the rating scale should be divided, or average rating rounding precision. The 1-5 scale is 80% of the cases, but there's no real reason or overhead to support any scale. To sum it up: Scale can consist negative and/or positive range or explicit integer/float values...and you won't even notice the difference on the outside. See the examples! =)
-* Possible to submit additional custom attributes while rating, such as *title* and *body* to make up a "review" instead of just a "rating". Feel free.
+* Don't make assumptions about the rating scale, how it should be divided, or rounding precision for stats.
+The 1-5 scale is 80% of the cases, but there's no real reason or overhead to support any scale. To sum it up: Scale
+ can consist negative and/or positive range or explicit integer/float values...and you won't even notice the
+ difference on the outside. See the examples! =)
+* Possible to submit additional custom attributes while rating, such as a *title* and *body* to make up a "review" instead of just a "rating". Feel free.
 * Finders implemented using scopes, i.e.. less code smell.
 * Information graphics provided as an optional extension to the plugin. Engine for charting would be useful, even if just for admins.
 
@@ -86,7 +88,7 @@ class Book &lt; ActiveRecord::Base
 end
 </pre>
 
-## 3. ...and here we go:
+## 3. API - a stable public api is scheduled for release 1.0.0 (plausibly June 2011)
 
 Examples:
 
@@ -305,6 +307,11 @@ For testing: "rspec" and "sqlite3-ruby":http://gemcutter.org/gems/sqlite3-ruby.
 ...that might be of interest.
 
 * "jQuery Star Rating":http://github.com/rathgar/jquery-star-rating/ - javascript star rating plugin for Rails on jQuery, if you don't want to do the rating widget on your own. It should be quite straightforward to customize the appearance of it for your needs too.
+
+
+# Versioning
+
+This project uses Semantic Versioning -- Please read and use to make the world a better place for software: http://semver.org/
 
 # License
 
