@@ -298,7 +298,7 @@ For testing: "rspec" and "sqlite3-ruby":http://gemcutter.org/gems/sqlite3-ruby.
 * documentation: A few more README-examples.
 * feature: Useful finders for *Reviewable*.
 * feature: Useful finders for *Reviewer*.
-* testing: More thorough tests, especially for named scopes which is a bit tricky.
+* testing: More thorough tests, especially for scopes which is a bit tricky.
 
 ## Maybe:
 
