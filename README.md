@@ -33,7 +33,7 @@ for rails 3, in your Gemfile:
 
 ## 1. Generate migration:
 
-`$ rails generate acts_as_reviewable_migration`
+`$ rails generate review:acts_as_reviewable_migration`
 
 Generates *db/migrations/{timestamp}_acts_as_reviewable_migration* with
 
